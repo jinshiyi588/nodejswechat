@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
 var wechat = require('./routes/wechat');
 
 var app = express();
@@ -58,8 +59,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+//app.listen(3000, function () {
+//  console.log('Example app listening on port 3000!');
+//});
 
 module.exports = app;
