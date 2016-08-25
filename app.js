@@ -8,8 +8,10 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var wechat = require('./routes/wechat');
+//var wechat = require('./routes/wechat');
 var log = require('./routes/log');
+
+var wechat = require('wechat');
 
 var app = express();
 
@@ -29,8 +31,7 @@ app.use('/', routes);
 app.use('/users', users);
 //app.use('/wechat', wechat);
 app.use('/log', log);
-
-app.use(express.query());
+//app.use(express.query());
 app.use('/wechat', wechat('jsy_token', function (req, res, next) {
   // message is located in req.weixin
   var message = req.weixin;
