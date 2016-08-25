@@ -31,12 +31,21 @@ app.use('/', routes);
 app.use('/users', users);
 //app.use('/wechat', wechat);
 app.use('/log', log);
-//app.use(express.query());
+
+app.use(express.query());
 app.use('/wechat', wechat('jsy_token', function (req, res, next) {
   // message is located in req.weixin
   var message = req.weixin;
   
-  if((message.MsgType == 'event') && (message.Event == 'subscribe'))  
+  fs.writeFile('./log.txt',message.FromUserName,function(err){
+    if(err){
+      return console.log(err);
+    }
+
+    console.log('write file success');
+  });
+
+  if((message.MsgType === 'event') && (message.Event === 'subscribe'))  
   {
     res.reply('hehe'); 
   } 
