@@ -13,6 +13,7 @@ var fs = require("fs");
 var log = require('./routes/log');
 
 var wechat = require('wechat');
+var config = require('./public/config');
 
 var app = express();
 
@@ -34,7 +35,7 @@ app.use('/users', users);
 app.use('/log', log);
 
 app.use(express.query());
-app.use('/wechat', wechat('jsy_token', function (req, res, next) {
+app.use('/wechat', wechat(config, function (req, res, next) {
   // message is located in req.weixin
   var message = req.weixin;
   

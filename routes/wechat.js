@@ -4,7 +4,7 @@ var wechat = require('wechat');
 var fs = require("fs");
 var crypto  = require('crypto');
 
-//var config = require('../config.js');
+//
 
 /* GET users listing. */
 router.get('/',  function (req, res) {
