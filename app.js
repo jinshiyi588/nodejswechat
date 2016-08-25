@@ -27,8 +27,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/wechat', wechat);
+//app.use('/wechat', wechat);
 app.use('/log', log);
+
+app.use(express.query());
+app.use('/wechat', wechat('jsy_token', function (req, res, next) {
+  // message is located in req.weixin
+  var message = req.weixin;
+  
+  if((message.MsgType == 'event') && (message.Event == 'subscribe'))  
+  {
+    res.reply('hehe'); 
+  } 
+  else{
+    // reply with thumbnails posts
+    res.reply([
+      {
+        title: 'Come to fetch me',
+        description: 'or you want to play in another way ?',
+        picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
+        url: 'http://nodeapi.cloudfoundry.com/'
+      }
+    ]);
+  }
+  
+}));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
