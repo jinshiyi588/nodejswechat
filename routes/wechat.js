@@ -50,7 +50,7 @@ router.post('/', wechat(config, function (req, res, next) {
       {
         title: 'Jinshiyi588',
         description: 'Jinshiyi’s github site',
-        picurl: 'http://jin41.chinacloudsites.cn/public/images/pic1.jpg',
+        picurl: 'http://jin41.chinacloudsites.cn/images/pic1.jpg',
         url: 'https://jinshiyi588.github.io/'
       }
     ]);
