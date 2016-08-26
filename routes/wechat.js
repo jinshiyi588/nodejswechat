@@ -2,42 +2,64 @@ var express = require('express');
 var router = express.Router();
 var wechat = require('wechat');
 var fs = require("fs");
-var crypto  = require('crypto');
+var config = require('../public/config');
+//var crypto  = require('crypto');
 
 //
 
 /* GET users listing. */
-router.get('/',  function (req, res) {
-	fs.writeFile('./log.txt',req.query.timestamp,function(err){
-		if(err){
-			return console.log(err);
-		}
 
-		console.log('write file success');
-	});
+router.get('/', function(res, req){
 
-    if(!checkSignature(req)){
-      res.writeHead(401);
-      res.end('signature not matched.');
-      return;
-  	}
+	var echoString = res.body.echostr;
+	res.send(echoString);
+});
+
+router.post('/', wechat(config, function (req, res, next) {
+  // message is located in req.weixin
+  var message = req.weixin;
+  
+  fs.writeFile('./log.txt',message.FromUserName,function(err){
+    if(err){
+      return console.log(err);
+    }
+
+    console.log('write file success');
+  });
+
+  if(((message.MsgType === 'event') && (message.Event === 'subscribe'))||((message.MsgType=== 'text') &&  (message.Content === '3')))  
+  {
+
+    var coldStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getPic?weixinId=" + message.FromUserName + "\">1. 每日一冷</a>";
+                          
+    var musicStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getMusic?weixinId=" + message.FromUserName + "\">2. Music</a>";   
     
-  	res.writeHead(200);
-  	res.end(req.query.echostr);
+    var menuStr = "3. 回复3进入Menu";   
 
-  	function checkSignature(req){
-      	var token = 'jsy_token',
-      		timestamp = req.query.timestamp,
-      		nonce     = req.query.nonce,
-      		signature = req.query.signature;
+    var emptyStr = "          ";                  
+    
+    var replyStr = "Hello，你终于来啦，颜值高的人都在关注我哟～(•̀ロ•́)و✧ ~~" + "\n"+ emptyStr + "\n" + coldStr + "\n"+ emptyStr + "\n" + musicStr;  
 
-    	var sha1 = crypto.createHash('sha1');
-    	var arr = [token, timestamp, nonce].sort();
-    	sha1.update(arr.join(''));
+    res.reply(replyStr); 
+  } else if(message.MsgType=== 'text' &&  message.Content === '你好'){
+    res.reply('你好呀～');
 
-    	return sha1.digest('hex') === signature;
-  	}
-});  
+  }else if(message.MsgType=== 'text' &&  message.Content === 'site'){
+    
+    res.reply([
+      {
+        title: 'Jinshiyi588',
+        description: 'Jinshiyi’s github site',
+        picurl: 'http://jin41.chinacloudsites.cn/public/pic1.jpg',
+        url: 'https://jinshiyi588.github.io/'
+      }
+    ]);
+  }else{
+    res.reply('功能还未完善，欢迎调戏我～');
+
+  }
+  
+}));
 
 
 

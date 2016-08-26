@@ -9,10 +9,10 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var fs = require("fs");
 
-//var wechat = require('./routes/wechat');
+var wechat_j = require('./routes/wechat');
 var log = require('./routes/log');
 
-var wechat = require('wechat');
+//var wechat = require('wechat');
 var config = require('./public/config');
 
 var app = express();
@@ -31,10 +31,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-//app.use('/wechat', wechat);
+app.use('/wechat', wechat_j);
 app.use('/log', log);
 
 app.use(express.query());
+/*
 app.use('/wechat', wechat(config, function (req, res, next) {
   // message is located in req.weixin
   var message = req.weixin;
@@ -47,23 +48,39 @@ app.use('/wechat', wechat(config, function (req, res, next) {
     console.log('write file success');
   });
 
-  if((message.MsgType === 'event') && (message.Event === 'subscribe'))  
+  if(((message.MsgType === 'event') && (message.Event === 'subscribe'))||((message.MsgType=== 'text') &&  (message.Content === '3')))  
   {
-    res.reply('hehe'); 
-  } 
-  else{
-    // reply with thumbnails posts
+
+    var coldStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getPic?weixinId=" + message.FromUserName + "\">1. 每日一冷</a>";
+                          
+    var musicStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getMusic?weixinId=" + message.FromUserName + "\">2. Music</a>";   
+    
+    var menuStr = "3. 回复3进入Menu";   
+
+    var emptyStr = "          ";                  
+    
+    var replyStr = "Hello，你终于来啦，颜值高的人都在关注我哟～(•̀ロ•́)و✧ ~~" + "\n"+ emptyStr + "\n" + coldStr + "\n"+ emptyStr + "\n" + musicStr;  
+
+    res.reply(replyStr); 
+  } else if(message.MsgType=== 'text' &&  message.Content === '你好'){
+    res.reply('你好呀～');
+
+  }else if(message.MsgType=== 'text' &&  message.Content === 'site'){
+    
     res.reply([
       {
-        title: 'Come to fetch me',
-        description: 'or you want to play in another way ?',
-        picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
-        url: 'http://nodeapi.cloudfoundry.com/'
+        title: 'Jinshiyi588',
+        description: 'Jinshiyi’s github site',
+        picurl: 'http://jin41.chinacloudsites.cn/public/pic1.jpg',
+        url: 'https://jinshiyi588.github.io/'
       }
     ]);
+  }else{
+    res.reply('功能还未完善，欢迎调戏我～');
+
   }
   
-}));
+}));*/
 
 
 // catch 404 and forward to error handler
