@@ -30,7 +30,7 @@ router.post('/', wechat(config, function (req, res, next) {
   if(((message.MsgType === 'event') && (message.Event === 'subscribe'))||((message.MsgType=== 'text') &&  (message.Content === '3')))  
   {
 
-    var coldStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getPic?weixinId=" + message.FromUserName + "\">1. 每日一冷</a>";
+    var coldStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getFun?weixinId=" + message.FromUserName + "\">1. 每日一冷</a>";
                           
     var musicStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getMusic?weixinId=" + message.FromUserName + "\">2. Music</a>";   
     

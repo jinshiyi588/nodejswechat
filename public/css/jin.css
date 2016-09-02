@@ -1,0 +1,25 @@
+.black{
+
+	background-color: black;
+}
+
+.grey{
+
+	background-color: grey;
+}
+
+.addFunForm label{
+	color: white;
+}
+
+section{
+	padding: 70px 0px 30px 0px;
+}
+
+.fun-foot{
+	margin-top: 30px;
+}
+
+strong{
+	color: #F05F40;
+}
