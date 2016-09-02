@@ -40,7 +40,7 @@ fs.appendFile('log.txt','2',function(err){
   });
 
 // view engine setup
-app.set('views', './app/views/pages');
+app.set('views', 'app/views/pages');
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public

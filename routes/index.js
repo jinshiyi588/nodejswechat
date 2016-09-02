@@ -8,9 +8,9 @@ router.get('/', function(req, res, next) {
     	if(err){
      	 return console.log(err);
    		}
-   		res.send('indexpage');
+   		//res.send('indexpage');
+  		res.render('index', { title: 'Express' });
 	});
-  //res.render('index', { title: 'Express' });
 });
 
 module.exports = router;
