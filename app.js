@@ -19,7 +19,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 //var dbUrl='mongodb://localhost/weixin';
-var dbUrl='mongodb://jsynodejsweixin.chinacloudapp.cn/weixin';
+var dbUrl='mongodb://42.159.224.67/weixin';
 
 mongoose.connect(dbUrl,function(err,db){
   //assert.equal(null, err);
