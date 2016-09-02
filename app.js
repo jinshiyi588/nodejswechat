@@ -21,6 +21,11 @@ var mongoose = require('mongoose');
 //var dbUrl='mongodb://localhost/weixin';
 var dbUrl='mongodb://42.159.224.67/weixin';
 
+fs.appendFile('log.txt','1',function(err){
+    if(err){
+      return console.log(err);
+    }
+
 mongoose.connect(dbUrl,function(err,db){
   //assert.equal(null, err);
     console.log("Connected correctly to server.");
