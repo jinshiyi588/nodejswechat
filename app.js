@@ -32,6 +32,11 @@ mongoose.connect(dbUrl,function(err,db){
     //db.close();
 })
 
+fs.appendFile('log.txt','2',function(err){
+    if(err){
+      return console.log(err);
+    }
+
 // view engine setup
 app.set('views', './app/views/pages');
 app.set('view engine', 'jade');
@@ -52,6 +57,11 @@ app.use('/log', log);
 app.use('/fun', fun);
 
 app.use(express.query());
+
+fs.appendFile('log.txt','3',function(err){
+    if(err){
+      return console.log(err);
+    }
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
