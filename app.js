@@ -25,6 +25,7 @@ fs.appendFile('log.txt','1',function(err){
     if(err){
       return console.log(err);
     }
+  });
 
 mongoose.connect(dbUrl,function(err,db){
   //assert.equal(null, err);
@@ -36,6 +37,7 @@ fs.appendFile('log.txt','2',function(err){
     if(err){
       return console.log(err);
     }
+  });
 
 // view engine setup
 app.set('views', './app/views/pages');
@@ -62,6 +64,7 @@ fs.appendFile('log.txt','3',function(err){
     if(err){
       return console.log(err);
     }
+  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
