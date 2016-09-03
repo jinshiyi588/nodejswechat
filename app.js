@@ -12,6 +12,8 @@ var wechat_j = require('./routes/wechat');
 var log = require('./routes/log');
 var fun = require('./routes/fun');
 var tech = require('./routes/tech');
+var enjoy = require('./routes/enjoy');
+var about = require('./routes/about');
 
 var config = require('./public/config');
 
@@ -59,6 +61,8 @@ app.use('/wechat', wechat_j);
 app.use('/log', log);
 app.use('/fun', fun);
 app.use('/tech', tech);
+app.use('/enjoy', enjoy);
+app.use('/about', about);
 
 app.use(express.query());
 

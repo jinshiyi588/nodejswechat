@@ -1,0 +1,31 @@
+extends ../layout
+
+block content		
+	section
+		.container
+			.row
+				h1 AddEnjoy
+				form.form-horizontal.addEnjoyForm(method="post", action="/enjoy/add", enctype="multipart/form-data") 
+					.form-group
+						label.col-sm-3.control-label(for="inputTitle") Title
+						.col-sm-9
+							input#inputTitle.form-control(type="text", name="enjoy[title]", value=enjoy.title)
+					.form-group
+						label.col-sm-3.control-label(for="inputAuthor") Author
+						.col-sm-9
+							input#inputAuthor.form-control(type="text", name="enjoy[author]", value=enjoy.author)
+					.form-group
+						label.col-sm-3.control-label(for="inputContent") Content
+						.col-sm-9
+							textarea#inputContent.form-control(rows="4" name="enjoy[content]", value=enjoy.content)
+					.form-group
+						label.col-sm-3.control-label(for="inputLink") Link
+						.col-sm-9
+							input#inputLink.form-control(type="text", name="enjoy[link]", value=enjoy.link)
+					.form-group
+						label.col-sm-3.control-label(for="inputUpload") Pic Upload
+						.col-sm-9
+							input#inputUpload.form-control(type="file", name="picUpload")
+					.form-group
+						.col-sm-offset-2.col-sm-10
+							button.btn.btn-defalut(type="submit") submit

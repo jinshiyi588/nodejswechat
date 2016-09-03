@@ -1,0 +1,19 @@
+extends ../layout
+
+block content	
+	section.bg-primary#content
+		//-h5#homeHeading &nbsp;点击上方蓝字关注我哟～
+		.container
+			.row
+				.col-lg-8.col-lg-offset-2.text-center
+					.fun-body
+						h2.section-heading #{enjoy.title}
+						//-hr.light
+						p.text-faded.text-left #{enjoy.content}
+						a(href="#{enjoy.link}").text-left Link
+						img(src="#{enjoy.picture}", width="100%")
+					//-hr
+					.fun-foot
+						a(href="#services").page-scroll.btn.btn-primary.btn-xl.sr-button#donate Donate ME!
+
+	

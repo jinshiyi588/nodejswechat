@@ -27,7 +27,7 @@ router.post('/', wechat(config, function (req, res, next) {
     console.log('write file success');
   });
 
-  if(((message.MsgType === 'event') && (message.Event === 'subscribe'))||((message.MsgType=== 'text') &&  (message.Content === 'help')))  
+  if(((message.MsgType === 'event') && (message.Event === 'subscribe'))||((message.MsgType=== 'text') &&  (message.Content === 'm')))  
   {
 
     var coldStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getFun?weixinId=" + message.FromUserName + "\">1. 每日一冷</a>";
@@ -38,7 +38,7 @@ router.post('/', wechat(config, function (req, res, next) {
 
     var aboutStr = "<a href=\"http://jin41.chinacloudsites.cn/about/getAbout?weixinId=" + message.FromUserName + "\">4. 关于我</a>";   
     
-    var menuStr = "回复help重新进入帮助菜单";   
+    var menuStr = "5. 回复m重新进入菜单";   
 
     var emptyStr = "          ";                  
     
@@ -64,7 +64,9 @@ router.post('/', wechat(config, function (req, res, next) {
       }
     ]);
   }else{
-    res.reply('功能还未完善，欢迎调戏我～');
+    var emptyStr = "          ";   
+    res.reply("回复m重新进入菜单~"+"\n"+emptyStr+"\n"
+              +"功能还未完善，欢迎调戏我～");
 
   }
   

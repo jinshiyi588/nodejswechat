@@ -5,7 +5,7 @@ var Fun = require('../app/models/fun');
 var multer  = require('multer')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/upload')
+    cb(null, './public/upload/fun')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now()+"-"+file.originalname)
@@ -36,7 +36,7 @@ router.post('/add', upload.single("picUpload"), function(req, res){
 	var funObj =req.body.fun;
 	
 	if(req.file){
-		funObj.picture="/upload/"+req.file.filename;
+		funObj.picture="/upload/enjoy/"+req.file.filename;
 	}	
 
 	var _fun =new Fun(funObj);
