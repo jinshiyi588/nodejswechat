@@ -10,7 +10,11 @@ router.get('/getTech', function(req, res) {
 		if(err) console.log(err);
 
 		var abPath=__dirname;
-		abPath=abPath.substring(0, abPath.lastIndexOf('/'));
+		var lastIndex = abPath.lastIndexOf('/');
+		if(lastIndex==-1){
+			lastIndex = abPath.lastIndexOf('\\');
+		}
+		abPath=abPath.substring(0, lastIndex);
 		//console.log(abPath);
 
 		fs.readFile(abPath+tech.path, function (err, data) {
