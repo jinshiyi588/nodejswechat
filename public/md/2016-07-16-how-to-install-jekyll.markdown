@@ -7,7 +7,7 @@
 
 ### 3. generate a  ssh
 >ssh-keygen -t rsa -b 4096 -C "jinshiyi588@163.com"
->passphrase:　1qw23e
+>passphrase:　xxxxxx
 
 ### 4. copy it from ubuntu and add in github
 >cat ~/.ssh/id_rsa.pub
