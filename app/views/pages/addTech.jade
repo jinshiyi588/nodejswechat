@@ -1,0 +1,23 @@
+extends ../layout
+
+block content		
+	section
+		.container
+			.row
+				h1 AddTech
+				form.form-horizontal.addTechForm(method="post", action="/tech/add") 
+					.form-group
+						label.col-sm-3.control-label(for="inputTitle") Title
+						.col-sm-9
+							input#inputTitle.form-control(type="text", name="tech[title]", value=tech.title)
+					.form-group
+						label.col-sm-3.control-label(for="inputAuthor") Author
+						.col-sm-9
+							input#inputAuthor.form-control(type="text", name="tech[author]", value=tech.author)
+					.form-group
+						label.col-sm-3.control-label(for="inputPath") Path
+						.col-sm-9
+							input#inputPath.form-control(type="text", name="tech[path]", value=tech.path)
+					.form-group
+						.col-sm-offset-2.col-sm-10
+							button.btn.btn-defalut(type="submit") submit

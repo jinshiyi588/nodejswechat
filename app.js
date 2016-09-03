@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var wechat_j = require('./routes/wechat');
 var log = require('./routes/log');
 var fun = require('./routes/fun');
+var tech = require('./routes/tech');
 
 var config = require('./public/config');
 
@@ -47,7 +48,7 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -57,6 +58,7 @@ app.use('/users', users);
 app.use('/wechat', wechat_j);
 app.use('/log', log);
 app.use('/fun', fun);
+app.use('/tech', tech);
 
 app.use(express.query());
 

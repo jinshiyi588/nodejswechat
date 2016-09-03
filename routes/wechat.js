@@ -32,13 +32,22 @@ router.post('/', wechat(config, function (req, res, next) {
 
     var coldStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getFun?weixinId=" + message.FromUserName + "\">1. 每日一冷</a>";
                           
-    var musicStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getMusic?weixinId=" + message.FromUserName + "\">2. Music</a>";   
+    var techStr = "<a href=\"http://jin41.chinacloudsites.cn/tech/getTech?weixinId=" + message.FromUserName + "\">2. 技术分享</a>";   
     
-    var menuStr = "3. 回复3进入Menu";   
+    var enjoyStr = "<a href=\"http://jin41.chinacloudsites.cn/enjoy/getEnjoy?weixinId=" + message.FromUserName + "\">3. 吃喝玩乐</a>";   
+
+    var aboutStr = "<a href=\"http://jin41.chinacloudsites.cn/about/getAbout?weixinId=" + message.FromUserName + "\">4. 关于我</a>";   
+    
+    var menuStr = "回复help重新进入帮助菜单";   
 
     var emptyStr = "          ";                  
     
-    var replyStr = "Hello，你终于来啦，颜值高的人都在关注我哟～(•̀ロ•́)و✧ ~~" + "\n"+ emptyStr + "\n" + coldStr + "\n"+ emptyStr + "\n" + musicStr;  
+    var replyStr = "Hello，你终于来啦，颜值高的人都在关注我哟～(•̀ロ•́)و✧ ~~" 
+                  + "\n"+ emptyStr + "\n" + coldStr + "\n"
+                  + emptyStr + "\n" + techStr + "\n"
+                  + emptyStr + "\n" + enjoyStr + "\n"
+                  + emptyStr + "\n" + aboutStr + "\n"
+                  + emptyStr + "\n" + menuStr + "\n";  
 
     res.reply(replyStr); 
   } else if(message.MsgType=== 'text' &&  message.Content === '你好'){

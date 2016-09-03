@@ -17,6 +17,7 @@
     "multer": "^1.2.0",
     "nodemon": "^1.10.2",
     "serve-favicon": "~2.3.0",
+    "showdown": "^1.4.3",
     "wechat": "^2.0.3"
   }
 }

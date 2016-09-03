@@ -7,11 +7,8 @@ block content
 			.row
 				.col-lg-8.col-lg-offset-2.text-center
 					.fun-body
-						h2.section-heading #{fun.title}
-						//-hr.light
-						p.text-faded.text-left #{fun.content}
-						img(src="#{fun.picture}", width="100%")
-					//-hr
+						h2.section-heading #{tech.title}
+						!=tech.content
 					.fun-foot
 						a(href="#services").page-scroll.btn.btn-primary.btn-xl.sr-button#donate Donate ME!
 
