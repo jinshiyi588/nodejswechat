@@ -9,8 +9,11 @@ router.get('/getTech', function(req, res) {
 	Tech.findOne({}, null, {sort: {techId: -1 }}, function(err, tech){
 		if(err) console.log(err);
 
+		var abPath=__dirname;
+		abPath=abPath.substring(0, abPath.lastIndexOf('/'));
+		//console.log(abPath);
 
-		fs.readFile('.'+tech.path, function (err, data) {
+		fs.readFile(abPath+tech.path, function (err, data) {
    			if (err) {
        			return console.error(err);
    			}

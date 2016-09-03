@@ -27,7 +27,7 @@ router.post('/', wechat(config, function (req, res, next) {
     console.log('write file success');
   });
 
-  if(((message.MsgType === 'event') && (message.Event === 'subscribe'))||((message.MsgType=== 'text') &&  (message.Content === '3')))  
+  if(((message.MsgType === 'event') && (message.Event === 'subscribe'))||((message.MsgType=== 'text') &&  (message.Content === 'help')))  
   {
 
     var coldStr = "<a href=\"http://jin41.chinacloudsites.cn/fun/getFun?weixinId=" + message.FromUserName + "\">1. 每日一冷</a>";
