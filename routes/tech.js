@@ -1,10 +1,8 @@
-var express = require('express');
-var router = express.Router();
 var Tech = require('../app/models/tech');
 var fs = require("fs");
 
 
-router.get('/getTech', function(req, res) {
+exports.getTech = function(req, res) {
 
 	Tech.findOne({}, null, {sort: {techId: -1 }}, function(err, tech){
 		if(err) console.log(err);
@@ -37,16 +35,15 @@ router.get('/getTech', function(req, res) {
 		});
 	});
 
-	
-});
+}
 
-router.get('/newTech', function(req, res){
+exports.newTech = function(req, res){
 	res.render('addTech',{
 			tech: {},
 		});
-})
+}
 
-router.post('/add', function(req, res){
+exports.add = function(req, res){
 	var techObj =req.body.tech;
 
 	console.log('author'+techObj.author);
@@ -71,6 +68,5 @@ router.post('/add', function(req, res){
 			res.redirect('/tech/getTech');		
 		})
   	});
-})
+}
 
-module.exports = router;

@@ -1,22 +1,8 @@
-var express = require('express');
-var router = express.Router();
 var Fun = require('../app/models/fun');
-
-var multer  = require('multer')
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/upload/fun')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now()+"-"+file.originalname)
-  }
-})
-
-var upload = multer({ storage: storage })
 
 
 /* GET users listing. */
-router.get('/getFun', function(req, res) {
+exports.getFun = function(req, res) {
 
 	Fun.findOne({}, null, {sort: {funId: -1 }}, function(err, fun){
 		if(err) console.log(err);
@@ -24,19 +10,19 @@ router.get('/getFun', function(req, res) {
 			fun: fun
 		})
 	});
-});
+}
 
-router.get('/newFun', function(req, res){
+exports.newFun = function(req, res){
 	res.render('addFun',{
 			fun: {},
 		});
-})
+}
 
-router.post('/add', upload.single("picUpload"), function(req, res){
+exports.add = function(req, res){
 	var funObj =req.body.fun;
 	
 	if(req.file){
-		funObj.picture="/upload/enjoy/"+req.file.filename;
+		funObj.picture="/upload/"+req.file.filename;
 	}	
 
 	var _fun =new Fun(funObj);
@@ -46,6 +32,7 @@ router.post('/add', upload.single("picUpload"), function(req, res){
   		.exec(function (err, fun) {
 		if(err) console.log(err);
 
+		console.log('fun:'+fun.title);
 		if(fun){
 			_fun.funId=fun.funId+1;
 		}else{
@@ -60,10 +47,10 @@ router.post('/add', upload.single("picUpload"), function(req, res){
 			res.redirect('/fun/getFun');		
 		})
   	});
-})
+}
 
+/*
 router.get('/getMusic', function(req, res, next) {
 	res.send('respond with a resource');
-});
+});*/
 
-module.exports = router;

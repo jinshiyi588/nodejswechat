@@ -2,21 +2,10 @@ var express = require('express');
 var router = express.Router();
 var About = require('../app/models/about');
 
-var multer  = require('multer')
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/upload/about')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now()+"-"+file.originalname)
-  }
-})
-
-var upload = multer({ storage: storage })
 
 
 /* GET users listing. */
-router.get('/getAbout', function(req, res) {
+exports.getAbout = function(req, res) {
 
 	About.findOne({}, null, {sort: {aboutId: -1 }}, function(err, about){
 		if(err) console.log(err);
@@ -24,19 +13,19 @@ router.get('/getAbout', function(req, res) {
 			about: about
 		})
 	});
-});
+}
 
-router.get('/newAbout', function(req, res){
+exports.newAbout = function(req, res){
 	res.render('addAbout',{
 			about: {},
 		});
-})
+}
 
-router.post('/add', upload.single("picUpload"), function(req, res){
+exports.add = function(req, res){
 	var aboutObj =req.body.about;
 	
 	if(req.file){
-		aboutObj.picture="/upload/about/"+req.file.filename;
+		aboutObj.picture="/upload/"+req.file.filename;
 	}	
 
 	var _about =new About(aboutObj);
@@ -60,7 +49,5 @@ router.post('/add', upload.single("picUpload"), function(req, res){
 			res.redirect('/about/getAbout');		
 		})
   	});
-})
+}
 
-
-module.exports = router;

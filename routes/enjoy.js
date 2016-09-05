@@ -1,22 +1,8 @@
-var express = require('express');
-var router = express.Router();
 var Enjoy = require('../app/models/enjoy');
-
-var multer  = require('multer')
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/upload/enjoy')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now()+"-"+file.originalname)
-  }
-})
-
-var upload = multer({ storage: storage })
 
 
 /* GET users listing. */
-router.get('/getEnjoy', function(req, res) {
+exports.getEnjoy = function(req, res) {
 
 	Enjoy.findOne({}, null, {sort: {enjoyId: -1 }}, function(err, enjoy){
 		if(err) console.log(err);
@@ -24,19 +10,19 @@ router.get('/getEnjoy', function(req, res) {
 			enjoy: enjoy
 		})
 	});
-});
+}
 
-router.get('/newEnjoy', function(req, res){
+exports.newEnjoy = function(req, res){
 	res.render('addEnjoy',{
 			enjoy: {},
 		});
-})
+}
 
-router.post('/add', upload.single("picUpload"), function(req, res){
+exports.add = function(req, res){
 	var enjoyObj =req.body.enjoy;
 	
 	if(req.file){
-		enjoyObj.picture="/upload/enjoy/"+req.file.filename;
+		enjoyObj.picture="/upload/"+req.file.filename;
 	}	
 
 	var _enjoy =new Enjoy(enjoyObj);
@@ -60,7 +46,5 @@ router.post('/add', upload.single("picUpload"), function(req, res){
 			res.redirect('/enjoy/getEnjoy');		
 		})
   	});
-})
+}
 
-
-module.exports = router;

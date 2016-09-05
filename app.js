@@ -14,8 +14,10 @@ var fun = require('./routes/fun');
 var tech = require('./routes/tech');
 var enjoy = require('./routes/enjoy');
 var about = require('./routes/about');
-
 var config = require('./public/config');
+
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
@@ -42,6 +44,16 @@ fs.appendFile('log.txt','2',function(err){
     }
   });
 
+//session
+app.use(session({
+  secret: "imooc",
+  cookie: { maxAge: 1000*60*10 } ,
+  store: new MongoStore({
+    url: dbUrl,
+    collection: "sessions"
+  })
+}));
+
 // view engine setup
 app.set('views', __dirname+'/app/views/pages');
 app.set('view engine', 'jade');
@@ -55,14 +67,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //route
-app.use('/', index);
-app.use('/users', users);
-app.use('/wechat', wechat_j);
-app.use('/log', log);
-app.use('/fun', fun);
-app.use('/tech', tech);
-app.use('/enjoy', enjoy);
-app.use('/about', about);
+require('./routes')(app);
 
 app.use(express.query());
 
