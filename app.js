@@ -6,47 +6,23 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require("fs");
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var wechat_j = require('./routes/wechat');
-var log = require('./routes/log');
-var fun = require('./routes/fun');
-var tech = require('./routes/tech');
-var enjoy = require('./routes/enjoy');
-var about = require('./routes/about');
-var config = require('./public/config');
-
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
 var mongoose = require('mongoose');
-
-//var dbUrl='mongodb://localhost/weixin';
 var dbUrl='mongodb://42.159.224.67/weixin';
-
-fs.appendFile('log.txt','1',function(err){
-    if(err){
-      return console.log(err);
-    }
-  });
-
 mongoose.connect(dbUrl,function(err,db){
   //assert.equal(null, err);
     console.log("Connected correctly to server.");
     //db.close();
 })
 
-fs.appendFile('log.txt','2',function(err){
-    if(err){
-      return console.log(err);
-    }
-  });
 
 //session
 app.use(session({
-  secret: "imooc",
+  secret: "jindoubi",
   cookie: { maxAge: 1000*60*10 } ,
   store: new MongoStore({
     url: dbUrl,
@@ -71,11 +47,6 @@ require('./routes')(app);
 
 app.use(express.query());
 
-fs.appendFile('log.txt','3',function(err){
-    if(err){
-      return console.log(err);
-    }
-  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

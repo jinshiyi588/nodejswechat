@@ -23,3 +23,12 @@ section{
 strong{
 	color: #F05F40;
 }
+
+.modal-footer{
+    border-top: none;
+}
+
+.welcome{
+
+	color: #F05F40 !important;
+}

@@ -4,7 +4,7 @@ nav#mainNav.navbar.navbar-default.navbar-fixed-top
             button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1") Menu
                 span.sr-only Toggle navigation
                 i.fa.fa-bars
-            a.navbar-brand.page-scroll(href="#page-top") Doubi Jin
+            a.navbar-brand.page-scroll(href="/") Doubi Jin
         .collapse.navbar-collapse#bs-example-navbar-collapse-1
             ul.nav.navbar-nav.navbar-right
                 li
@@ -13,7 +13,20 @@ nav#mainNav.navbar.navbar-default.navbar-fixed-top
                     a.page-scroll(href="#donate") Donate
                 li
                     a.page-scroll(href="#contact") Contact                    
-                
+                if user
+                    li
+                        a.welcome(href="#") 
+                            span Welcome, &nbsp; #{user.name}
+                    li
+                        a(href="/logout") 
+                            span.glyphicon.glyphicon-log-out &nbsp;Logout
+                else
+                    li
+                        a(href="/showSignup")
+                            span.glyphicon.glyphicon-user &nbsp;Signup
+                    li
+                        a(href="/showLogin")
+                            span.glyphicon.glyphicon-log-in &nbsp;Login
             
            
     

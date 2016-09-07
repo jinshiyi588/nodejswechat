@@ -1,5 +1,5 @@
 var index = require('./routes/index');
-var users = require('./routes/users');
+var User = require('./routes/users');
 var Wechat = require('./routes/wechat');
 var Log = require('./routes/log');
 var Fun = require('./routes/fun');
@@ -40,25 +40,33 @@ module.exports = function(app){
 
 	//4 function
 	app.get('/fun/getFun', Fun.getFun);
-	app.get('/fun/newFun', Fun.newFun);
-	app.post('/fun/add', upload.single("picUpload"), Fun.add);
+	app.get('/fun/newFun', User.isSignin, Fun.newFun);
+	app.post('/fun/add', User.isSignin, upload.single("picUpload"), Fun.add);
 
 	app.get('/tech/getTech', Tech.getTech);
-	app.get('/tech/newTech', Tech.newTech);
-	app.post('/tech/add', Tech.add);
+	app.get('/tech/newTech', User.isSignin, Tech.newTech);
+	app.post('/tech/add', User.isSignin, Tech.add);
 	
 	app.get('/about/getAbout', About.getAbout);
-	app.get('/about/newAbout', About.newAbout);
-	app.post('/about/add', upload.single("picUpload"), About.add);
+	app.get('/about/newAbout', User.isSignin, About.newAbout);
+	app.post('/about/add', User.isSignin, upload.single("picUpload"), About.add);
 	
 	app.get('/enjoy/getEnjoy', Enjoy.getEnjoy);
-	app.get('/enjoy/newEnjoy', Enjoy.newEnjoy);
-	app.post('/enjoy/add', upload.single("picUpload"), Enjoy.add);
+	app.get('/enjoy/newEnjoy', User.isSignin, Enjoy.newEnjoy);
+	app.post('/enjoy/add', User.isSignin, upload.single("picUpload"), Enjoy.add);
 
+	//user
+	app.post('/signup', User.signup);
+	app.post('/login', User.login);
+	app.get('/logout', User.logout);
+	app.get('/showSignup', User.showSignup);
+	app.get('/showLogin', User.showLogin);	
 
 	app.get('/log', Log.log);
 
 	app.get('/wechat', Wechat.get);
+
+	app.get('/wechat/jssdk', Wechat.jssdk);
 	//app.delete('/admin/list', User.isSignin, User.isAdministrator, Movie.delete);
 
 	app.post('/wechat', wechat(config, function (req, res, next) {
@@ -84,6 +92,8 @@ module.exports = function(app){
 
 		    var aboutStr = "<a href=\"http://jin41.chinacloudsites.cn/about/getAbout?weixinId=" + message.FromUserName + "\">4. 关于我</a>";   
 		    
+		    var jssdkStr = "<a href=\"http://jin41.chinacloudsites.cn/wechat/jssdk\">5. jssdk</a>";   
+		    
 		    var menuStr = "5. 回复m重新进入菜单";   
 
 		    var emptyStr = "          ";                  
@@ -93,7 +103,8 @@ module.exports = function(app){
 		                  + emptyStr + "\n" + techStr + "\n"
 		                  + emptyStr + "\n" + enjoyStr + "\n"
 		                  + emptyStr + "\n" + aboutStr + "\n"
-		                  + emptyStr + "\n" + menuStr + "\n";  
+		                  + emptyStr + "\n" + menuStr + "\n"
+		                  + emptyStr + "\n" + jssdkStr + "\n";  
 
 		    res.reply(replyStr); 
 		  } else if(message.MsgType=== 'text' &&  message.Content === '你好'){
