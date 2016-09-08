@@ -6,14 +6,15 @@ block content
 		.container
 			.row
 				.col-lg-8.col-lg-offset-2.text-center
-					.fun-body
+					.enjoy-body
 						h2.section-heading #{enjoy.title}
 						//-hr.light
 						p.text-faded.text-left #{enjoy.content}
-						a(href="#{enjoy.link}").text-left Link
+						.enjoy-link
+							a(href="#{enjoy.link}") Link
 						img(src="#{enjoy.picture}", width="100%")
 					//-hr
 					.fun-foot
-						a(href="/images/DonateMe.jpeg").page-scroll.btn.btn-primary.btn-xl.sr-button#donate Donate ME!
+						//-a(href="/images/DonateMe.jpeg").page-scroll.btn.btn-primary.btn-xl.sr-button#donate Donate ME!
 
 	

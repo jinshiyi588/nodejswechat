@@ -94,7 +94,7 @@ module.exports = function(app){
 		    
 		    var jssdkStr = "<a href=\"http://jin41.chinacloudsites.cn/wechat/jssdk\">5. jssdk</a>";   
 		    
-		    var menuStr = "5. 回复m重新进入菜单";   
+		    var menuStr = "6. 回复m重新进入菜单";   
 
 		    var emptyStr = "          ";                  
 		    
@@ -103,8 +103,8 @@ module.exports = function(app){
 		                  + emptyStr + "\n" + techStr + "\n"
 		                  + emptyStr + "\n" + enjoyStr + "\n"
 		                  + emptyStr + "\n" + aboutStr + "\n"
-		                  + emptyStr + "\n" + menuStr + "\n"
-		                  + emptyStr + "\n" + jssdkStr + "\n";  
+		                  + emptyStr + "\n" + jssdkStr + "\n"
+		                  + emptyStr + "\n" + menuStr + "\n";  
 
 		    res.reply(replyStr); 
 		  } else if(message.MsgType=== 'text' &&  message.Content === '你好'){

@@ -32,3 +32,18 @@ strong{
 
 	color: #F05F40 !important;
 }
+
+.donate-btn{
+
+	margin-bottom: 50px;
+}
+
+.enjoy-link > a{
+	font-size: 18px;
+}
+
+.enjoy-link{
+
+	float: right;
+}
+
