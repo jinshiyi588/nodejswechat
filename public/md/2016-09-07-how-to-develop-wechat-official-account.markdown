@@ -48,7 +48,7 @@
 		  }
 ```
 
-* 完整代码请查看我的[github]()
+* 完整代码请查看我的[github](https://github.com/jinshiyi588/nodejswechat)
 
 ###微信jssdk功能
 
